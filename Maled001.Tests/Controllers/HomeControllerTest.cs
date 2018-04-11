@@ -16,5 +16,29 @@ namespace Maled001.Tests.Controllers {
             ViewResult result = controller.Index() as ViewResult;
             Assert.IsNotNull(result);
         }
+        [TestMethod]
+        public void OrderRequest() {
+            HomeController controller = new HomeController();
+            ViewResult result = controller.OrderRequest() as ViewResult;
+            Assert.IsNull(result.ViewBag.Message);
+        }
+        [TestMethod]
+        public void PreviewOrder() {
+            HomeController controller = new HomeController();
+            ViewResult result = controller.Index() as ViewResult;
+            Assert.IsNull(result.ViewBag.prodotti);
+        }
+        [TestMethod]
+        public void ProductDetail() {
+            HomeController controller = new HomeController();
+            ViewResult result = controller.Index() as ViewResult;
+             Assert.IsNull(result.ViewBag.Message);
+        }
+        [TestMethod]
+        public void ProductList() {
+            HomeController controller = new HomeController();
+            ViewResult result = controller.Index() as ViewResult;
+             Assert.IsNull(result.ViewBag.Message);
+        }
     }
 }
