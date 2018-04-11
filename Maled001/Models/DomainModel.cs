@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Maled001{
     public class Maled : IMaled {
@@ -27,9 +28,6 @@ namespace Maled001{
             }
 	    }
 
-	    public Prodotto SearchByCode(int codice) {
-		    throw new System.NotImplementedException();
-	    }
 	    public Prodotto SearchByCode(int codice) {
 		    Prodotto trovato = new Prodotto();
             using (var db = new RICHIESTEEntities()) {

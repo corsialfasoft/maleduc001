@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Maled001.Controllers {
     public class HomeController : Controller {
+        Maled dm = new Maled();
         public ActionResult Index() {
             return View();
         }
@@ -38,10 +39,22 @@ namespace Maled001.Controllers {
         }
 
         [HttpPost]
-        //Da implementare
         public ActionResult OrderRequest(string codice, string descrizione) {
-            return View();
+            if (String.IsNullOrEmpty(codice) && int.TryParse(codice, out int codiceint)) {
+                ViewBag.prodotto = dm.SearchByCode(codiceint);
+            } else if (String.IsNullOrEmpty(descrizione)) {
+                ViewBag.prodotti = dm.SearchByDescrizione(descrizione);
+            }
+            if (ViewBag.prodotto!=null) {
+                return View("ProductDetail");
+            } else if (ViewBag.prodotti!=null) {
+                return View("ProductList");
+            } else {
+                ViewBag.Message = "Nessun prodotto trovato...!";
+                return View();
+            }
         }
+
         [HttpPost]
         //Da implementare
         public ActionResult AddToOrder(int id) {
