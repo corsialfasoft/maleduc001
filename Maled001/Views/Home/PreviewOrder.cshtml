@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Anteprima Ordini";
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <strong>Codice Prodotto:</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>Descrizione:</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>Quantita:</strong>
+        </div>
+    </div>
+    @foreach(var product in ViewBag.prodotti) {
+        <div class="row">
+            <div class="col-md-2">
+                @product.Codice
+            </div>
+            <div class="col-md-2">
+                @product.Descrizione
+            </div>
+            <div class="col-md-2">
+                @product.Quantita
+            </div>
+        </div>
+    }
+    <br />
+    <a class="btn btn-primary" href="/Home/SendRequest" role="button">Invia</a>
+    <a class="btn btn-primary" href="/Home/Pulisci" role="button">Pulisci</a>
+    <a class="btn btn-primary" href="/Home/OrderRequest" role="button">Annulla</a>
+</div>
