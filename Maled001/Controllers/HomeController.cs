@@ -31,7 +31,7 @@ namespace Maled001.Controllers {
         [HttpGet]
         public ActionResult Product(int id) {
             ViewBag.prodotto = dm.SearchByCode(id);
-            return View("DettaglioProdotto");
+            return View("ProductDetail");
         }
         //Da implementare
         public ActionResult Pulisci() {
