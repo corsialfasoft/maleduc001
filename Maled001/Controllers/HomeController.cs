@@ -9,16 +9,42 @@ namespace Maled001.Controllers {
         public ActionResult Index() {
             return View();
         }
-
-        public ActionResult About() {
-            ViewBag.Message = "Your application description page.";
-
+        public ActionResult OrderRequest() {
+            return View();
+        }
+        public ActionResult PreviewOrder() {
+            return View();
+        }
+        public ActionResult ProductDetail() {
+            return View();
+        }
+        public ActionResult ProductList() {
             return View();
         }
 
-        public ActionResult Contact() {
-            ViewBag.Message = "Your contact page.";
+        //Da implementare
+        public ActionResult SendRequest() {
+            return View();
+        }
 
+        //Da implementare
+        [HttpGet]
+        public ActionResult Product() {
+            return View();
+        }
+        //Da implementare
+        public ActionResult Pulisci() {
+            return View();
+        }
+
+        [HttpPost]
+        //Da implementare
+        public ActionResult OrderRequest(string codice, string descrizione) {
+            return View();
+        }
+        [HttpPost]
+        //Da implementare
+        public ActionResult AddToOrder(int id) {
             return View();
         }
     }

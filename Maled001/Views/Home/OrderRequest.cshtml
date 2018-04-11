@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Richiesta D'ordine";
+}
+<h2>@ViewBag.Title</h2>
+<div class="text-warning">
+    <h4>@ViewBag.Message</h4>
+</div>
+@using(Html.BeginForm("OrderRequest","Home",FormMethod.Post)) {
+    <div class="row">
+        <div class="col-md-2">
+            Codice:
+        </div>
+        <div class="col-md-3">
+            @Html.TextBox("codice",null,new { placeholder = "Codice da cercare" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Descrizione:
+        </div>
+        <div class="col-md-3">
+            @Html.TextBox("descrizione",null,new { placeholder = "Descrizione da cercare" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            <input type="submit" value="Cerca">
+        </div>
+    </div>
+}
