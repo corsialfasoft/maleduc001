@@ -28,10 +28,10 @@ namespace Maled001.Controllers {
             return View();
         }
 
-        //Da implementare
         [HttpGet]
-        public ActionResult Product() {
-            return View();
+        public ActionResult Product(int id) {
+            ViewBag.prodotto = dm.SearchByCode(id);
+            return View("ProductDetail");
         }
         //Da implementare
         public ActionResult Pulisci() {
@@ -56,9 +56,17 @@ namespace Maled001.Controllers {
         }
 
         [HttpPost]
-        //Da implementare
-        public ActionResult AddToOrder(int id) {
-            return View();
+        public ActionResult AddToOrder(string codice, string qta) {
+            Prodotto product = dm.SearchByCode(int.Parse(codice));
+            product.Quantita = int.Parse(qta);
+            List<Prodotto> products = Session["products"] as List<Prodotto>;
+            if(products == null){
+                products = new List<Prodotto>();
+            }
+            products.Add(product);
+            Session["products"] = products;
+            ViewBag.Message="Richiesta d'ordine inserita nel carrello";
+            return View("OrderRequest");
         }
     }
 }
