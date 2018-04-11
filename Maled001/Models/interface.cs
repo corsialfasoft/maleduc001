@@ -1,6 +1,4 @@
-﻿using System;
-using Maled001;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Maled001 {
     public interface IMaled {
