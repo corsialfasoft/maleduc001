@@ -28,10 +28,10 @@ namespace Maled001.Controllers {
             return View();
         }
 
-        //Da implementare
         [HttpGet]
-        public ActionResult Product() {
-            return View();
+        public ActionResult Product(int id) {
+            ViewBag.prodotto = dm.SearchByCode(id);
+            return View("DettaglioProdotto");
         }
         //Da implementare
         public ActionResult Pulisci() {
