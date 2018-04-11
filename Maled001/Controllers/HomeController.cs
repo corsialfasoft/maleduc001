@@ -13,9 +13,17 @@ namespace Maled001.Controllers {
         public ActionResult OrderRequest() {
             return View();
         }
-        public ActionResult PreviewOrder() {
+        public ActionResult PreviewOrder(){
+            if(Session["products"] != null) {
+                List<Prodotto> products = Session["products"] as List<Prodotto>;
+                ViewBag.prodotti = products;
+            } else {
+                List<Prodotto> products = new List<Prodotto>();
+                ViewBag.prodotti = products;
+            }
             return View();
         }
+
         public ActionResult ProductDetail() {
             return View();
         }
@@ -23,9 +31,16 @@ namespace Maled001.Controllers {
             return View();
         }
 
-        //Da implementare
         public ActionResult SendRequest() {
-            return View();
+            try{
+                dm.AddRequest(Session["products"] as List<Prodotto>);
+                Session["products"] = new List<Prodotto>();
+                ViewBag.prodotti = new List<Prodotto>();
+                ViewBag.Message="Richiesta d'ordine inserita";
+            } catch(Exception) {
+                ViewBag.Message="Non puoi inserire lo stesso prodotto nel carrello, pulisci il carrello e riprova";
+            }
+            return View("OrderRequest");
         }
 
         [HttpGet]
@@ -33,16 +48,19 @@ namespace Maled001.Controllers {
             ViewBag.prodotto = dm.SearchByCode(id);
             return View("ProductDetail");
         }
-        //Da implementare
+
         public ActionResult Pulisci() {
-            return View();
+            Session["products"] = new List<Prodotto>();
+            List<Prodotto> products = new List<Prodotto>();
+            ViewBag.prodotti = products;
+            return View("OrderRequest");
         }
 
         [HttpPost]
         public ActionResult OrderRequest(string codice, string descrizione) {
-            if (String.IsNullOrEmpty(codice) && int.TryParse(codice, out int codiceint)) {
+            if (!String.IsNullOrEmpty(codice) && int.TryParse(codice, out int codiceint)) {
                 ViewBag.prodotto = dm.SearchByCode(codiceint);
-            } else if (String.IsNullOrEmpty(descrizione)) {
+            } else if (!String.IsNullOrEmpty(descrizione)) {
                 ViewBag.prodotti = dm.SearchByDescrizione(descrizione);
             }
             if (ViewBag.prodotto!=null) {
